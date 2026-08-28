@@ -1,0 +1,4 @@
+project_id = "mission-english-rag"
+
+[db]
+schema_paths = ["./schemas/*.sql"]
