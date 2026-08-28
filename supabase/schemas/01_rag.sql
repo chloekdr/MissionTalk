@@ -69,10 +69,11 @@ as $$
     document.id,
     document.content,
     document.metadata,
-    1 - (document.embedding <=> query_embedding) as similarity
+    1 - (document.embedding operator(extensions.<=>) query_embedding) as similarity
   from public.rag_documents as document
-  where 1 - (document.embedding <=> query_embedding) >= greatest(0, least(1, match_threshold))
-  order by document.embedding <=> query_embedding
+  where 1 - (document.embedding operator(extensions.<=>) query_embedding)
+    >= greatest(0, least(1, match_threshold))
+  order by document.embedding operator(extensions.<=>) query_embedding
   limit greatest(1, least(10, match_count));
 $$;
 
