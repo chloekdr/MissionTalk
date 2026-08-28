@@ -1,4 +1,4 @@
-# 미션톡 로컬 RAG 챗봇
+# 미션톡 RAG 챗봇
 
 Upstage Document Parse와 Solar Embedding 2로 교회 자료를 처리하고, Supabase pgvector에서 관련 문장을 검색한 뒤 OpenAI Responses API로 쉬운 선교 영어를 생성합니다.
 
@@ -39,3 +39,14 @@ pnpm build
 ```
 
 외부 API만 따로 확인하려면 `pnpm api:verify:upstage`와 `pnpm api:verify:openai`를 실행합니다.
+
+## Vercel 배포
+
+이 프로젝트는 표준 Next.js App Router 구조이며 Vercel에서 `Next.js` 프레임워크로 배포합니다.
+
+- Root Directory: `./`
+- Build Command: 기본값 (`pnpm build`)
+- Node.js: 22.x
+- 필수 환경변수: 위의 서버 전용 환경변수 4개
+
+환경변수는 Production과 Preview에 설정하고 `NEXT_PUBLIC_` 접두사를 사용하지 않습니다. 특히 `SUPABASE_SERVICE_ROLE_KEY`는 서버에서만 사용합니다.
